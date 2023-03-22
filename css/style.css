@@ -1,0 +1,54 @@
+.bc-card{
+    border: 2px dotted darkblue;
+    background-color: rgb(145, 182, 255);
+    border-radius: 30px;
+    overflow: hidden;
+}
+.buy-buttom:hover{
+    animation:tada2 1s 0s;
+}
+@media screen and (width>=960px) {
+    .showcase{
+        margin-left: 1%;
+    }
+}
+@media screen and (width<960px) and (width>=630px){
+    .left-sidebar{
+        width:92%;
+        display:flex;
+    }
+    .showcase{
+        margin-top:15px;
+    }
+}
+@media screen and (width<630px) {
+    .left-sidebar{
+        width:92%;
+    }
+    .div2{
+        width:40%;
+    }
+    .div3{
+        width:49%;
+    }
+    .logo{
+        width:100%;
+        padding-bottom: 13px;
+    }
+    .showcase{
+        margin-top:15px;
+    }
+    .item-img{
+        width:40%;
+    }
+    .buy-buttom{
+        width:50%;
+    }
+}
+@keyframes tada2 {
+    0% {transform: scale(1);} 
+    10%, 20% {transform: scale(0.9) rotate(-3deg);} 
+    30%, 50%, 70%, 90% {transform: scale(1.1) rotate(3deg);} 
+    40%, 60%, 80% {transform: scale(1.1) rotate(-3deg);} 
+    100% {transform: scale(1) rotate(0);} 
+} 

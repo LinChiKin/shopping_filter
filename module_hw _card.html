@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="Description" content="Enter your description here"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="./sweetalert2-11.7.3/package/dist/sweetalert2.css">
+        <link rel="stylesheet" href="./css/style.css">
+        <title>前端綜合練習</title>
+    </head>
+    <body id="body">
+
+
+        <div class="container-lg mt-4 mb-4">
+            <div class="row">
+                <div class="col-2 logo">
+                    <img src="https://fakeimg.pl/150x70/200" width="100%" height="100%">
+                </div>
+                <div class="col">
+                    <div class="input-group">
+                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" id="search-text">
+                        <button type="button" class="btn btn-outline-primary" id="search">search</button>
+                      </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-lg">
+            <div class="row">
+                <div class="col-2 ms-3 left-sidebar">
+                    <div class="row">
+                        <h3>Price</h3>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="price_radio" id="price_no_restricted" checked>
+                          <label class="form-check-label" for="price_no_restricted">
+                            不限
+                          </label> <br>
+                          <input class="form-check-input" type="radio" name="price_radio" id="price_100">
+                          <label class="form-check-label" for="price_100">
+                            0 ~ 100
+                          </label> <br>
+                          <input class="form-check-input" type="radio" name="price_radio" id="price_10000">
+                          <label class="form-check-label" for="price_10000">
+                            101 ~ 10000
+                          </label> <br>
+                          <input class="form-check-input" type="radio" name="price_radio" id="price_more">
+                          <label class="form-check-label" for="price_more">
+                            10001 or more
+                          </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h3>Amount</h3>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="amount_radio" id="amount_no_restricted" checked>
+                            <label class="form-check-label" for="amount_no_restricted">
+                                不限
+                            </label> <br>
+                            <input class="form-check-input" type="radio" name="amount_radio" id="amount_1000">
+                            <label class="form-check-label" for="amount_1000">
+                                0 ~ 1000
+                            </label> <br>
+                            <input class="form-check-input" type="radio" name="amount_radio" id="amount_5000">
+                            <label class="form-check-label" for="amount_5000">
+                                1001 ~ 5000
+                            </label> <br>
+                            <input class="form-check-input" type="radio" name="amount_radio" id="amount_20000">
+                            <label class="form-check-label" for="amount_20000">
+                                5001 ~ 20000
+                            </label> <br>
+                            <input class="form-check-input" type="radio" name="amount_radio" id="amount_more">
+                            <label class="form-check-label" for="amount_more">
+                                20001 or more
+                            </label> <br>
+                          </div>
+                    </div>
+                    <div class="row">
+                        <h3>Type</h3>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="type_3C">
+                          <label class="form-check-label" for="type_3C">
+                            3C
+                          </label> <br>
+                          <input class="form-check-input" type="checkbox" value="" id="type_drink">
+                          <label class="form-check-label" for="type_drink">
+                            飲料
+                          </label> <br>
+                          <input class="form-check-input" type="checkbox" value="" id="type_food">
+                          <label class="form-check-label" for="type_food">
+                            食品
+                          </label>
+                        </div>
+                    </div>
+                    <div class="row d-flex flex-wrap gy-2 mt-2">
+                        <button type="button" class="btn btn-primary btn-lg" id="confirm">
+                            Confirm
+                        </button>
+                        <button type="button" class="btn btn-primary btn-lg" id="refresh">
+                            全部
+                        </button>
+                        <!----------------------------------------------------->
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalId1">
+                            進階篩選
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="modalId1" tabindex="-1" role="dialog" aria-labelledby="modalTitleId1" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                        <div class="modal-header">
+                                                <h5 class="modal-title" id="modalTitleId1">進階篩選</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                            
+                                            <div class="row">
+                                                <div class="col-3 div2">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="checkbox" value="" id="famount_check" onchange="check_able(this)">
+                                                      <label class="form-check-label" for="famount_check">
+                                                        Amount
+                                                      </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-8 div3">
+                                                    <div class="row">
+                                                        <label for="famount_min">Min</label>
+                                                        <input type="number" id="famount_min" disabled>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label for="famount_max">Max</label>
+                                                        <input type="number" id="famount_max" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 div2">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="checkbox" value="" id="fprice_check" onchange="check_able(this)">
+                                                      <label class="form-check-label" for="fprice_check">
+                                                        Price
+                                                      </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-8 div3">
+                                                    <div class="row">
+                                                        <label for="fprice_min">Min</label>
+                                                        <input type="number" id="fprice_min" disabled>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label for="fprice_max">Max</label>
+                                                        <input type="number" id="fprice_max" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-3 div2">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="checkbox" value="" id="ftype_check" onchange="check_able(this)">
+                                                      <label class="form-check-label" for="ftype_check">
+                                                        Type
+                                                      </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-8 div3">
+                                                   <div class="mb-3" style="margin-left: -10px;">
+                                                     <input type="text"
+                                                       class="form-control" name="" id="ftype_text" aria-describedby="helpId" placeholder="" disabled>
+                                                   </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-3 div2">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="checkbox" value="" id="fid_check" onchange="check_able(this)">
+                                                      <label class="form-check-label" for="fid_check">
+                                                        ID
+                                                      </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-8 div3">
+                                                   <div class="mb-3" style="margin-left: -10px;">
+                                                     <input type="text"
+                                                       class="form-control" name="" id="fid_text" aria-describedby="helpId" placeholder="" disabled>
+                                                   </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-3 div2">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="checkbox" value="" id="fname_check" onchange="check_able(this)">
+                                                      <label class="form-check-label" for="fname_check">
+                                                        Name
+                                                      </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-8 div3">
+                                                   <div class="mb-3" style="margin-left: -10px;">
+                                                     <input type="text"
+                                                       class="form-control" name="" id="fname_text" aria-describedby="helpId" placeholder="" disabled>
+                                                   </div>
+                                                </div>
+                                            </div>      
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" id="filter">Confirm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <script>
+                            var modalId1 = document.getElementById('modalId1');
+                        
+                            modalId1.addEventListener('show.bs.modal', function (event) {
+                                  // Button that triggered the modal
+                                  let button = event.relatedTarget;
+                                  // Extract info from data-bs-* attributes
+                                  let recipient = button.getAttribute('data-bs-whatever');
+                        
+                                // Use above variables to manipulate the DOM
+                            });
+                            function check_able(element){
+                                try{
+                                    let type_check=document.getElementById("ftype_check");
+                                    let price_check=document.getElementById("fprice_check");
+                                    let id_check=document.getElementById("fid_check");
+                                    let name_check=document.getElementById("fname_check");
+                                    let amount_check=document.getElementById("famount_check");
+                                    let targets=new Array();
+        
+                                    if(element==amount_check){
+                                        targets.push(document.getElementById("famount_min"));
+                                        targets.push(document.getElementById("famount_max"));
+                                    }else if(element==price_check){
+                                        targets.push(document.getElementById("fprice_min"));
+                                        targets.push(document.getElementById("fprice_max"));
+                                    } else if(element==type_check){
+                                        targets.push(document.getElementById("ftype_text"));
+                                    }else if(element==id_check){
+                                        targets.push(document.getElementById("fid_text"));
+                                    }else if(element==name_check){
+                                        targets.push(document.getElementById("fname_text"));
+                                    }
+        
+                                    if(element.checked){
+                                        for(var i of targets){
+                                            i.removeAttribute("disabled");
+                                        }
+                                    }else{
+                                        for(var i of targets){
+                                            i.setAttribute("disabled",true);
+                                        }
+                                    }
+                                }catch(error){
+                                    alert(error);
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row showcase">
+                        <div class="d-flex flex-column" id="tbody1" style="gap:7px">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+        
+        <!---------------------------------------------------------------------------------------------------------------->
+        <script src="./sweetalert2-11.7.3/package/dist/sweetalert2.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+        <script type="module" src="./js/script.js"></script>
+    </body>
+</html>

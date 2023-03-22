@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="Description" content="Enter your description here"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="./sweetalert2-11.7.3/package/dist/sweetalert2.css">
+        <title>前端綜合練習</title>
+        <style>
+            @media screen and (width<960px) and (width>=630px){
+                .left-sidebar{
+                    width:92%;
+                    display:flex;
+                }
+            }
+            @media screen and (width<630px) {
+                .left-sidebar{
+                    width:92%;
+                }
+                .div2{
+                    width:40%;
+                }
+                .div3{
+                    width:49%;
+                }
+                .logo{
+                    width:100%;
+                    padding-bottom: 13px;
+                }
+            }
+        </style>
+    </head>
+    <body id="body">
+
+
+        <div class="container-lg mt-4 mb-4">
+            <div class="row">
+                <div class="col-2 logo">
+                    <img src="https://fakeimg.pl/150x70/200" width="100%" height="100%">
+                </div>
+                <div class="col">
+                    <div class="input-group">
+                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" id="search-text">
+                        <button type="button" class="btn btn-outline-primary" id="search">search</button>
+                      </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-lg">
+            <div class="row">
+                <div class="col-2 ms-3 left-sidebar">
+                    <div class="row">
+                        <h3>Price</h3>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="price_radio" id="price_no_restricted" checked>
+                          <label class="form-check-label" for="price_no_restricted">
+                            不限
+                          </label> <br>
+                          <input class="form-check-input" type="radio" name="price_radio" id="price_100">
+                          <label class="form-check-label" for="price_100">
+                            0 ~ 100
+                          </label> <br>
+                          <input class="form-check-input" type="radio" name="price_radio" id="price_10000">
+                          <label class="form-check-label" for="price_10000">
+                            101 ~ 10000
+                          </label> <br>
+                          <input class="form-check-input" type="radio" name="price_radio" id="price_more">
+                          <label class="form-check-label" for="price_more">
+                            10001 or more
+                          </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h3>Amount</h3>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="amount_radio" id="amount_no_restricted" checked>
+                            <label class="form-check-label" for="amount_no_restricted">
+                                不限
+                            </label> <br>
+                            <input class="form-check-input" type="radio" name="amount_radio" id="amount_1000">
+                            <label class="form-check-label" for="amount_1000">
+                                0 ~ 1000
+                            </label> <br>
+                            <input class="form-check-input" type="radio" name="amount_radio" id="amount_5000">
+                            <label class="form-check-label" for="amount_5000">
+                                1001 ~ 5000
+                            </label> <br>
+                            <input class="form-check-input" type="radio" name="amount_radio" id="amount_20000">
+                            <label class="form-check-label" for="amount_20000">
+                                5001 ~ 20000
+                            </label> <br>
+                            <input class="form-check-input" type="radio" name="amount_radio" id="amount_more">
+                            <label class="form-check-label" for="amount_more">
+                                20001 or more
+                            </label> <br>
+                          </div>
+                    </div>
+                    <div class="row">
+                        <h3>Type</h3>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="type_3C">
+                          <label class="form-check-label" for="type_3C">
+                            3C
+                          </label> <br>
+                          <input class="form-check-input" type="checkbox" value="" id="type_drink">
+                          <label class="form-check-label" for="type_drink">
+                            飲料
+                          </label> <br>
+                          <input class="form-check-input" type="checkbox" value="" id="type_food">
+                          <label class="form-check-label" for="type_food">
+                            食品
+                          </label>
+                        </div>
+                    </div>
+                    <div class="row d-flex flex-wrap gy-2 mt-2">
+                        <button type="button" class="btn btn-primary btn-lg" id="confirm">
+                            Confirm
+                        </button>
+                        <button type="button" class="btn btn-primary btn-lg" id="refresh">
+                            全部
+                        </button>
+                        <!----------------------------------------------------->
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalId1">
+                            進階篩選
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="modalId1" tabindex="-1" role="dialog" aria-labelledby="modalTitleId1" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                        <div class="modal-header">
+                                                <h5 class="modal-title" id="modalTitleId1">進階篩選</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                            
+                                            <div class="row">
+                                                <div class="col-3 div2">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="checkbox" value="" id="famount_check" onchange="check_able(this)">
+                                                      <label class="form-check-label" for="famount_check">
+                                                        Amount
+                                                      </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-8 div3">
+                                                    <div class="row">
+                                                        <label for="famount_min">Min</label>
+                                                        <input type="number" id="famount_min" disabled>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label for="famount_max">Max</label>
+                                                        <input type="number" id="famount_max" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 div2">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="checkbox" value="" id="fprice_check" onchange="check_able(this)">
+                                                      <label class="form-check-label" for="fprice_check">
+                                                        Price
+                                                      </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-8 div3">
+                                                    <div class="row">
+                                                        <label for="fprice_min">Min</label>
+                                                        <input type="number" id="fprice_min" disabled>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label for="fprice_max">Max</label>
+                                                        <input type="number" id="fprice_max" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-3 div2">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="checkbox" value="" id="ftype_check" onchange="check_able(this)">
+                                                      <label class="form-check-label" for="ftype_check">
+                                                        Type
+                                                      </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-8 div3">
+                                                   <div class="mb-3" style="margin-left: -10px;">
+                                                     <input type="text"
+                                                       class="form-control" name="" id="ftype_text" aria-describedby="helpId" placeholder="" disabled>
+                                                   </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-3 div2">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="checkbox" value="" id="fid_check" onchange="check_able(this)">
+                                                      <label class="form-check-label" for="fid_check">
+                                                        ID
+                                                      </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-8 div3">
+                                                   <div class="mb-3" style="margin-left: -10px;">
+                                                     <input type="text"
+                                                       class="form-control" name="" id="fid_text" aria-describedby="helpId" placeholder="" disabled>
+                                                   </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-3 div2">
+                                                    <div class="form-check">
+                                                      <input class="form-check-input" type="checkbox" value="" id="fname_check" onchange="check_able(this)">
+                                                      <label class="form-check-label" for="fname_check">
+                                                        Name
+                                                      </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-8 div3">
+                                                   <div class="mb-3" style="margin-left: -10px;">
+                                                     <input type="text"
+                                                       class="form-control" name="" id="fname_text" aria-describedby="helpId" placeholder="" disabled>
+                                                   </div>
+                                                </div>
+                                            </div>      
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" id="filter">Confirm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <script>
+                            var modalId1 = document.getElementById('modalId1');
+                        
+                            modalId1.addEventListener('show.bs.modal', function (event) {
+                                  // Button that triggered the modal
+                                  let button = event.relatedTarget;
+                                  // Extract info from data-bs-* attributes
+                                  let recipient = button.getAttribute('data-bs-whatever');
+                        
+                                // Use above variables to manipulate the DOM
+                            });
+                            function check_able(element){
+                                try{
+                                    let type_check=document.getElementById("ftype_check");
+                                    let price_check=document.getElementById("fprice_check");
+                                    let id_check=document.getElementById("fid_check");
+                                    let name_check=document.getElementById("fname_check");
+                                    let amount_check=document.getElementById("famount_check");
+                                    let targets=new Array();
+        
+                                    if(element==amount_check){
+                                        targets.push(document.getElementById("famount_min"));
+                                        targets.push(document.getElementById("famount_max"));
+                                    }else if(element==price_check){
+                                        targets.push(document.getElementById("fprice_min"));
+                                        targets.push(document.getElementById("fprice_max"));
+                                    } else if(element==type_check){
+                                        targets.push(document.getElementById("ftype_text"));
+                                    }else if(element==id_check){
+                                        targets.push(document.getElementById("fid_text"));
+                                    }else if(element==name_check){
+                                        targets.push(document.getElementById("fname_text"));
+                                    }
+        
+                                    if(element.checked){
+                                        for(var i of targets){
+                                            i.removeAttribute("disabled");
+                                        }
+                                    }else{
+                                        for(var i of targets){
+                                            i.setAttribute("disabled",true);
+                                        }
+                                    }
+                                }catch(error){
+                                    alert(error);
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="table-responsive">
+                                <table class="table color-purple">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Type</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody1">
+                    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+        
+<!---------------------------------------------------------------------------------------------------------------->
+        <script src="./sweetalert2-11.7.3/package/dist/sweetalert2.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+        <script type="module">
+            import product from "./js/product.js";
+            let tbody=document.getElementById("tbody1");
+            let filter_product;
+
+            function print_products(object_arr,tbody){
+                try{
+                    tbody.innerHTML="";
+                    for(var i=0;i<object_arr.length;i++){
+                        tbody.innerHTML+=`
+                            <tr>
+                                <td scope="col">${object_arr[i].ProductNumber}</td>
+                                <td scope="col">${object_arr[i].ProductName}</td>
+                                <td scope="col">${object_arr[i].Amount}</td>
+                                <td scope="col">${object_arr[i].Price}</td>
+                                <td scope="col">${object_arr[i].ProductType}</td>
+                            </tr>
+                        `;
+                    }
+                }catch(error){
+                    alert(error);
+                }
+            }
+            class f_element{
+                constructor(){
+                    this.ftype_check=false;
+                    this.fprice_check=false;
+                    this.fid_check=false;
+                    this.fname_check=false;
+                    this.famount_check=false;
+                    this.famount_min=0;
+                    this.famount_max=0;
+                    this.fprice_min=0;
+                    this.fprice_max=0;
+                    this.ftype_text="";
+                    this.fid_text="";
+                    this.fname_text="";
+                }
+                filter_action1(){
+                    this.ftype_check=document.getElementById("ftype_check").checked;
+                    this.fprice_check=document.getElementById("fprice_check").checked;
+                    this.fid_check=document.getElementById("fid_check").checked;
+                    this.fname_check=document.getElementById("fname_check").checked;
+                    this.famount_check=document.getElementById("famount_check").checked;
+
+                    this.famount_min=document.getElementById("famount_min").value;
+                    this.famount_max=document.getElementById("famount_max").value;
+                    this.fprice_min=document.getElementById("fprice_min").value;
+                    this.fprice_max=document.getElementById("fprice_max").value;
+                    this.ftype_text=document.getElementById("ftype_text").value;
+                    this.fid_text=document.getElementById("fid_text").value;
+                    this.fname_text=document.getElementById("fname_text").value;
+                }
+            }
+            function filter(f_element_obj){
+                let type_check=f_element_obj.ftype_check
+                let price_check=f_element_obj.fprice_check
+                let id_check=f_element_obj.fid_check
+                let name_check=f_element_obj.fname_check
+                let amount_check=f_element_obj.famount_check
+
+                let amount_min_text=f_element_obj.famount_min
+                let amount_max_text=f_element_obj.famount_max
+                let price_min_text=f_element_obj.fprice_min
+                let price_max_text=f_element_obj.fprice_max
+                let type_text=f_element_obj.ftype_text
+                let id_text=f_element_obj.fid_text
+                let name_text=f_element_obj.fname_text
+
+                let temp=product.filter((index)=>{
+                    if(amount_check){
+                        if(!((index.Amount>=amount_min_text)&&(index.Amount<=amount_max_text))){
+                            return false;
+                        }
+                    }
+                    if(price_check){
+                        if(!((index.Price>=price_min_text)&&(index.Price<=price_max_text))){
+                            return false;
+                        }
+                    }
+                    if(type_check){
+                        if(!(type_text.includes(index.ProductType))){
+                            return false;
+                        }
+                    }
+                    if(id_check){
+                        if(!(id_text.includes(index.ProductNumber))){
+                            return false;
+                        }
+                    }
+                    if(name_check){
+                        if(!(name_text.includes(index.ProductName))){
+                            return false;
+                        }
+                    }
+                    return true;
+                });
+                filter_product=temp;
+                print_ifnot_empty();
+            }
+            function search(){
+                try{
+                    let text=document.getElementById("search-text").value;
+                    if(text!="*"){
+                        let Numbers=product.filter((index)=>{return text.includes(index.ProductNumber);});
+                        let Names=product.filter((index)=>{return text.includes(index.ProductName);});
+                        let Types=product.filter((index)=>{return text.includes(index.ProductType);});
+
+                        filter_product=new Array();
+                        filter_product=filter_product.concat(Numbers,Names,Types);
+
+                        let duplicated=new Array();
+                        filter_product.forEach((index)=>{
+                            let temp=filter_product.filter((index2)=>{return index2.ProductNumber==index.ProductNumber});
+                            if(temp.length>1) {
+                                if(!(duplicated.includes(index.ProductNumber))){
+                                    duplicated.push(index.ProductNumber);
+                                }
+                            }
+                        });
+                        
+                        for(var i=0;i<duplicated.length;i++){
+                            let rmindex=-1;
+                            for(var k of filter_product){
+                                rmindex++;
+                                if(k.ProductNumber==duplicated[i]){
+                                    filter_product.splice(rmindex,1);
+                                    break;
+                                }
+                            }
+                        }
+                        print_ifnot_empty();
+                    }else{
+                        print_products(product,tbody);
+                    }
+                }catch(error){
+                    alert(error);
+                }
+            }
+            function print_ifnot_empty(){
+                if(filter_product.length==0){
+                    Swal.fire(
+                    'Not Found',
+                    'Cannot find your product',
+                    'question'
+                    );
+                }else{
+                    print_products(filter_product,tbody);
+                    Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Product Founded',
+                    showConfirmButton: false,
+                    timer: 1500
+                    });
+                }
+            }
+            function simple_search(){
+                let price_no_restricted=document.getElementById("price_no_restricted").checked;
+                let price_100=document.getElementById("price_100").checked;
+                let price_10000=document.getElementById("price_10000").checked;
+                let price_more=document.getElementById("price_more").checked;
+
+                let amount_no_restricted=document.getElementById("amount_no_restricted").checked;
+                let amount_1000=document.getElementById("amount_1000").checked;
+                let amount_5000=document.getElementById("amount_5000").checked;
+                let amount_20000=document.getElementById("amount_20000").checked;
+                let amount_more=document.getElementById("amount_more").checked;
+
+                let type_3C=document.getElementById("type_3C").checked;
+                let type_drink=document.getElementById("type_drink").checked;
+                let type_food=document.getElementById("type_food").checked;
+
+                let temp=new f_element();
+                if(!price_no_restricted){
+                    temp.fprice_check=true;
+                }
+                if(!amount_no_restricted){
+                    temp.famount_check=true;
+                }
+                if(type_3C||type_drink||type_food){
+                    temp.ftype_check=true;
+                }
+                if(price_100){
+                    temp.fprice_min=0;
+                    temp.fprice_max=100;
+                }
+                if(price_10000){
+                    temp.fprice_min=101;
+                    temp.fprice_max=10000;
+                }
+                if(price_more){
+                    temp.fprice_min=10001;
+                    temp.fprice_max=999999999999999999;
+                }
+                if(amount_1000){
+                    temp.famount_min=0;
+                    temp.famount_max=1000;
+                }
+                if(amount_5000){
+                    temp.famount_min=1001;
+                    temp.famount_max=5000;
+                }
+                if(amount_20000){
+                    temp.famount_min=5001;
+                    temp.famount_max=20000;
+                }
+                if(amount_more){
+                    temp.famount_min=20001
+                    temp.famount_max=99999999999999999;
+                }
+                if(type_3C){
+                    temp.ftype_text+="3C ";
+                }
+                if(type_drink){
+                    temp.ftype_text+="飲料 ";
+                }
+                if(type_food){
+                    temp.ftype_text+="食品 ";
+                }
+                filter(temp);
+            }
+            //Event Listener
+            document.getElementById("confirm").addEventListener("click",()=>{
+                simple_search();
+            });
+            document.getElementById("refresh").addEventListener("click",()=>{
+                print_products(product,tbody);
+            });
+            document.getElementById("search").addEventListener("click",()=>{
+                search();
+            });
+            document.getElementById("filter").addEventListener("click",()=>{
+                let tempobj=new f_element();
+                tempobj.filter_action1();
+                filter(tempobj);
+            });
+            //Main
+            window.onload=()=>{
+                print_products(product,tbody);
+                filter_product=product;
+            };
+        </script>
+    </body>
+</html>
